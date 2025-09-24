@@ -31,43 +31,11 @@ Below is a listing of the main tables, a description, and example key columns. U
 | **distribution_centers** | Locations of logistics / warehouses | `id` (PK), `name`, `latitude`, `longitude` | Useful for spatial analysis: distance to user, delivery modeling, logistics cost |
 | **events** | Web / site user events (browse, add-to-cart, purchase) | `event_id` (PK), `user_id` (FK → users), `sequence_number`, `event_type` (view, add_to_cart, purchase, etc.), `product_id`, `created_at`, `traffic_source`, `user_agent` | For funnel analysis, attribution, user behavior flow |
 
----
+-- 
 
-## 🔍 Column-Level Dictionary (Example for `users`)
+# Entity Relationship Model
 
-Below is a sample of how you might document one table in detail. Do the same for others in your repo.
-
-| Column | Type | Description | Nullable / Constraints | Business Use |
-|---|---|---|---|---|
-| `id` | STRING / INT | Unique identifier for user | Not null | Key to join with orders, events |
-| `first_name` | STRING | User’s first name | Nullable | Personalization, auditing |
-| `last_name` | STRING | User’s last name | Nullable | — |
-| `email` | STRING | User’s email address | Nullable | Communication, segmentation |
-| `gender` | STRING | Gender of user (e.g. “Male”, “Female”, “Other”) | Nullable | Demographic segmentation |
-| `age` | INT | Age in years | Nullable | Age group segmentation |
-| `country` | STRING | Country of user | Nullable | Regional analysis |
-| `city` | STRING | City name | Nullable | Geospatial / city-level reports |
-| `created_at` | TIMESTAMP | When user account was created | Not null | Lifetime, cohort analysis |
-| `traffic_source` | STRING | Channel/source by which user arrived | Nullable | Attribution / marketing channel analysis |
-| `latitude` | FLOAT | Geographic latitude of user | Nullable | Mapping, distance calculations |
-| `longitude` | FLOAT | Geographic longitude of user | Nullable | — |
-
-You should replicate a similar table for **each BigQuery table**.
-
----
-
-## 🔗 Entity Relationships & ERD
-
-- **users.id** → **orders.user_id**
-- **orders.order_id** → **order_items.order_id**
-- **order_items.product_id** → **products.id**
-- **order_items.inventory_item_id** → **inventory_items.id**
-- **inventory_items.product_id** → **products.id**
-- **inventory_items.distribution_center_id** → **distribution_centers.id**
-- **events.user_id** → **users.id**
-- **events.product_id** → **products.id** (for action linking)
-
-You may generate an ERD diagram (e.g. via QuickDBD, draw.io, or graph tools using INFORMATION_SCHEMA queries) to visualize these relationships. :contentReference[oaicite:2]{index=2}
+![TheLook Ecommerce ER Model](../../../images/thelook_ecommerce_er_model.jpeg)
 
 ---
 
@@ -96,26 +64,3 @@ Here are some core metrics or dimensions you can derive from this dataset:
 - The dataset is **static** – it is not continuously updated; thus it serves best for historical analysis, tests, or modeling, not real-time production.  
 - Joins are presumed to be many-to-one or one-to-many; be careful with cardinality especially in events or order_items.  
 - Be cautious with performance: querying large joins can consume many bytes, so filter early, pick columns, and use query cost estimates in BigQuery.
-
----
-
-## 🛠️ How to Probe the Schema in BigQuery
-
-You can use the following queries to inspect structure and metadata:
-
-```sql
--- List all tables in dataset
-SELECT table_name
-FROM `bigquery-public-data.thelook_ecommerce.INFORMATION_SCHEMA.TABLES`
-WHERE table_type = 'BASE TABLE';
-
--- List columns and types for a table, e.g. users
-SELECT column_name, data_type, is_nullable
-FROM `bigquery-public-data.thelook_ecommerce.INFORMATION_SCHEMA.COLUMNS`
-WHERE table_name = 'users'
-ORDER BY ordinal_position;
-
--- Get DDL (creation statement) for all tables
-SELECT table_name, ddl
-FROM `bigquery-public-data.thelook_ecommerce.INFORMATION_SCHEMA.TABLES`
-WHERE table_type = 'BASE TABLE';
