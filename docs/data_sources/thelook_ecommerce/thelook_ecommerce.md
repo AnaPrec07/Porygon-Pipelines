@@ -35,7 +35,7 @@ Below is a listing of the main tables, a description, and example key columns. U
 
 # Entity Relationship Model
 
-![TheLook Ecommerce ER Model](../../docs/images/thelook_ecommerce_er_model.jpeg)
+![TheLook Ecommerce ER Model](../../images/thelook_ecommerce_er_model.jpeg)
 
 ---
 
