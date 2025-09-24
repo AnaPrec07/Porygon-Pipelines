@@ -31,7 +31,7 @@ Below is a listing of the main tables, a description, and example key columns. U
 | **distribution_centers** | Locations of logistics / warehouses | `id` (PK), `name`, `latitude`, `longitude` | Useful for spatial analysis: distance to user, delivery modeling, logistics cost |
 | **events** | Web / site user events (browse, add-to-cart, purchase) | `event_id` (PK), `user_id` (FK → users), `sequence_number`, `event_type` (view, add_to_cart, purchase, etc.), `product_id`, `created_at`, `traffic_source`, `user_agent` | For funnel analysis, attribution, user behavior flow |
 
--- 
+---
 
 # Entity Relationship Model
 
