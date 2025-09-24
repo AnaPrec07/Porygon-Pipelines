@@ -15,6 +15,8 @@ users → events → orders → order_items → inventory / products → (distri
 
 Customers browse (events), place orders, order items link to products/inventory, and distribution centers / logistics help model delivery and returns.  
 
+Expected update frequency: Daily.
+
 ---
 
 ## 📦 Tables & Key Entities
