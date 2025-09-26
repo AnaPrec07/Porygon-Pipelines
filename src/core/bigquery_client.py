@@ -10,7 +10,6 @@ import pandas as pd
 from typing import Optional
 
 
-# Todo: fix the docstring in this module. 
 class BigQueryClient:
     """
     Client for interacting with Google BigQuery.
