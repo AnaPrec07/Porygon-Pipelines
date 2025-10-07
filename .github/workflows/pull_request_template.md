@@ -1,5 +1,5 @@
 ## Summary and Motivation
-Briefly describe what this PR does and why is the change needed. 
+Briefly describe what this PR does and why the change is needed. 
 
 ## Code Modifications
 Describe how you implemented the change and key design decisions.
