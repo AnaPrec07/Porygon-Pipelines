@@ -1,13 +1,10 @@
-## Summary
-Briefly describe what this PR does [2-3 sentences].
-
-## Motivation
-Explain why this change is needed. Link any related issues, bugs, or feature requests [2-3 sentences].
+## Summary and Motivation
+Briefly describe what this PR does and why is the change needed. 
 
 ## Code Modifications
 Describe how you implemented the change and key design decisions.
 
-## Unit-Test Modifications
+## Unit-Test Updates
 Explain modifications to unit-testing for this change.
 
 ## Documentation Updates
