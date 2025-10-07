@@ -3,9 +3,6 @@ core/pipeline.py
 
 This module defines the Pipeline abstract class, which serves as a template for all pipelines in this repository.
 It provides a consistent interface for data extraction, transformation, and loading.
-
-Main Abstract Class:
-    - Pipeline: Abstract class for all data pipelines.
 """
 
 from src.core.bigquery_client import BigQueryClient
