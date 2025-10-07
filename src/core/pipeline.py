@@ -19,7 +19,7 @@ class Pipeline(ABC):
         self.bq_client = BigQueryClient()
 
     @abstractmethod
-    def extract(self, table_name: str):
+    def extract(self):
         """
         Abstract method to extract data from a specified table.
         Must be implemented by subclasses.
@@ -27,7 +27,7 @@ class Pipeline(ABC):
         pass
 
     @abstractmethod
-    def transform(self, table_name: str):
+    def transform(self):
         """
         Abstract method to transform extracted data.
         Must be implemented by subclasses.
@@ -35,7 +35,7 @@ class Pipeline(ABC):
         pass
 
     @abstractmethod
-    def load(self, table_name: str):
+    def load(self):
         """
         Abstract method to load transformed data.
         Must be implemented by subclasses.
